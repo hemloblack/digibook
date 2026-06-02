@@ -1,0 +1,1133 @@
+/* ============================================
+   کتابفروشی من - استایل نهایی
+   ============================================ */
+
+:root {
+    --primary: #6c5ce7;
+    --primary-dark: #5a4bd1;
+    --primary-light: #a29bfe;
+    --secondary: #00b894;
+    --secondary-dark: #00a381;
+    --accent: #fdcb6e;
+    --dark: #2d3436;
+    --dark-light: #636e72;
+    --light: #f8f9fa;
+    --white: #ffffff;
+    --red: #e74c3c;
+    --red-light: #ff7675;
+    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
+    --shadow-md: 0 5px 20px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
+    --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --transition: all 0.3s ease;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
+    background: #f0f2f5;
+    color: var(--dark);
+    line-height: 1.8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
+}
+
+/* ============================================
+   هدر و نوبار
+   ============================================ */
+.navbar {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    padding: 12px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+}
+
+.navbar::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary-light), var(--primary));
+}
+
+.navbar .container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--white);
+    font-size: 24px;
+    font-weight: 900;
+    text-decoration: none;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    transition: var(--transition);
+}
+
+.navbar-brand:hover {
+    transform: scale(1.05);
+    color: var(--accent);
+}
+
+.navbar-nav {
+    display: flex;
+    list-style: none;
+    gap: 10px;
+    align-items: center;
+}
+
+.navbar-nav .nav-link {
+    color: rgba(255,255,255,0.9);
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 25px;
+    font-weight: 500;
+    font-size: 14px;
+    transition: var(--transition);
+}
+
+.navbar-nav .nav-link:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.navbar-nav .nav-link.active {
+    background: var(--primary);
+    color: var(--white);
+    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+}
+
+
+.cart-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(255,255,255,0.15);
+    color: var(--white);
+    padding: 10px 22px;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: var(--transition);
+    border: 2px solid rgba(255,255,255,0.2);
+    position: relative;
+}
+
+.cart-btn:hover {
+    background: rgba(255,255,255,0.25);
+    border-color: rgba(255,255,255,0.4);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.cart-count {
+    background: var(--red);
+    color: var(--white);
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.5);
+}
+
+/* ============================================
+   محتوای اصلی
+   ============================================ */
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 30px 25px;
+    display: flexbox;
+}
+
+/* ============================================
+   کارت کتاب‌ها - گرید منظم
+   ============================================ */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 10px 0;
+}
+
+.book-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    border: 1px solid #eee;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.book-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+    border-color: var(--primary-light);
+}
+
+.book-card-image {
+    position: relative;
+    overflow: hidden;
+    height: 240px;
+    background: #f5f5f5;
+}
+
+.book-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+}
+
+.book-card:hover .book-card-image img {
+    transform: scale(1.08);
+}
+
+.book-card-image .category-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--primary);
+    color: var(--white);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    z-index: 2;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+}
+
+.book-card-body {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.book-card-title {
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 8px;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.book-card-author {
+    color: var(--dark-light);
+    font-size: 13px;
+    margin-bottom: 12px;
+}
+
+.book-card-price {
+    font-size: 22px;
+    font-weight: 900;
+    color: var(--secondary);
+    margin: auto 0 15px 0;
+    padding: 8px 0;
+    border-top: 1px dashed #e0e0e0;
+}
+
+.book-card-price::after {
+    content: ' تومان';
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--dark-light);
+    margin-right: 4px;
+}
+
+.book-card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.book-card-actions .btn {
+    flex: 1;
+    padding: 10px 15px;
+    font-size: 13px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+/* ============================================
+   دکمه‌ها
+   ============================================ */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: var(--transition);
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+}
+
+.btn:active {
+    transform: scale(0.96);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.25);
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5a4bd1, #4a3db5);
+    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.btn-secondary {
+    background: linear-gradient(135deg, #00b894, #00a381);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.25);
+}
+
+.btn-secondary:hover {
+    background: linear-gradient(135deg, #00a381, #008f6b);
+    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.btn-outline {
+    background: transparent;
+    color: var(--primary);
+    border: 2px solid var(--primary);
+}
+
+.btn-outline:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-2px);
+}
+
+.btn-success {
+    background: linear-gradient(135deg, #27ae60, #2ecc71);
+    color: var(--white);
+    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
+}
+
+.btn-success:hover {
+    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.btn-danger {
+    background: linear-gradient(135deg, #e74c3c, #c0392b);
+    color: var(--white);
+}
+
+.btn-danger:hover {
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    transform: translateY(-2px);
+    color: var(--white);
+}
+
+.btn-lg {
+    padding: 16px 35px;
+    font-size: 16px;
+    border-radius: 14px;
+}
+
+.btn-block {
+    width: 100%;
+    display: flex;
+}
+
+.btn-sm {
+    padding: 8px 16px;
+    font-size: 12px;
+    border-radius: 8px;
+}
+
+/* ============================================
+   پیغام خالی
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.empty-state-icon {
+    font-size: 70px;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    font-size: 22px;
+    color: var(--dark-light);
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #aaa;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+/* ============================================
+   صفحه تک کتاب - کاملاً بازطراحی شده
+   ============================================ */
+.book-detail {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    gap: 40px;
+    background: var(--white);
+    padding: 0;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.book-detail-image {
+    background: #f8f8f8;
+    padding: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-detail-image img {
+    width: 100%;
+    max-height: 500px;
+    object-fit: contain;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+}
+
+.book-detail-info {
+    padding: 40px 40px 40px 0;
+}
+
+.book-detail-info h1 {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 12px;
+    line-height: 1.4;
+}
+
+.book-detail-info .author {
+    font-size: 16px;
+    color: var(--dark-light);
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.book-detail-info .category {
+    display: inline-block;
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+    color: var(--white);
+    padding: 6px 18px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.book-detail-info .price-box {
+    background: linear-gradient(135deg, #f0fff4, #e8f8f0);
+    padding: 20px 25px;
+    border-radius: 16px;
+    margin: 25px 0;
+    border: 2px dashed #00b894;
+}
+
+.book-detail-info .price {
+    font-size: 36px;
+    font-weight: 900;
+    color: #00b894;
+}
+
+.book-detail-info .price::after {
+    content: ' تومان';
+    font-size: 14px;
+    font-weight: 500;
+    color: #636e72;
+    margin-right: 6px;
+}
+
+.book-detail-info .description {
+    color: var(--dark-light);
+    line-height: 2;
+    margin-top: 25px;
+    padding-top: 25px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.book-detail-info .description h4 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 15px;
+}
+
+.book-detail-info .actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+/* ============================================
+   فرم اضافه کردن کتاب
+   ============================================ */
+.form-container {
+    background: var(--white);
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    max-width: 650px;
+    margin: 30px auto;
+}
+
+.form-container h2 {
+    text-align: center;
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 30px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #f0f0f0;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--dark);
+    font-size: 14px;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+    padding: 14px 18px;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    font-size: 14px;
+    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    transition: var(--transition);
+    background: #fafafa;
+    color: var(--dark);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.08);
+    background: var(--white);
+}
+
+.form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ============================================
+   سبد خرید - کاملاً بازطراحی شده
+   ============================================ */
+.cart-container {
+    background: var(--white);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+    
+}
+
+.cart-container h2 {
+    font-size: 26px;
+    font-weight: 900;
+    color: var(--dark);
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 3px solid #f0f0f0;
+    
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 18px;
+    background: #fafafa;
+    border-radius: 14px;
+    margin-bottom: 12px;
+    transition: var(--transition);
+    border: 1px solid #eee;
+}
+
+.cart-item:hover {
+    background: #f5f5f5;
+    border-color: #ddd;
+}
+
+.cart-item-details {
+    flex: 1;
+    min-width: 0;
+}
+
+.cart-item-details h5 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--dark);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.cart-item-details .unit-price {
+    font-size: 12px;
+    color: var(--dark-light);
+}
+
+.cart-item-quantity {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--white);
+    padding: 5px 10px;
+    border-radius: 25px;
+    border: 2px solid #eee;
+}
+
+.cart-item-quantity button {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background: #f0f0f0;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--dark);
+}
+
+.cart-item-quantity button:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+.cart-item-quantity span {
+    font-size: 15px;
+    font-weight: 700;
+    min-width: 25px;
+    text-align: center;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--secondary);
+    min-width: 100px;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.cart-item-remove {
+    background: #ff7675;
+    color: var(--white);
+    border: none;
+    padding: 8px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: var(--transition);
+    white-space: nowrap;
+}
+
+.cart-item-remove:hover {
+    background: #e74c3c;
+}
+
+.cart-total {
+    margin-top: 25px;
+    padding: 25px;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+    border-radius: 16px;
+}
+
+.cart-total h3 {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--dark);
+    margin-bottom: 12px;
+}
+
+.cart-total .total-price {
+    font-size: 30px;
+    font-weight: 900;
+    color: var(--secondary);
+}
+
+.cart-total .btn {
+    margin-top: 15px;
+}
+
+/* ============================================
+   صفحه موفقیت سفارش
+   ============================================ */
+.success-message {
+    text-align: center;
+    padding: 60px 20px;
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: var(--shadow-md);
+}
+
+.success-icon {
+    font-size: 90px;
+    color: var(--secondary);
+    margin-bottom: 20px;
+}
+
+.success-message h2 {
+    font-size: 26px;
+    color: var(--dark);
+    margin-bottom: 10px;
+}
+
+.success-message p {
+    color: var(--dark-light);
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+
+/* ============================================
+   فوتر
+   ============================================ */
+footer {
+    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+    color: var(--white);
+    text-align: center;
+    padding: 25px 20px;
+    margin-top: 80px;
+    position: relative;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary-light), var(--primary));
+}
+
+footer .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+footer .footer-title {
+    font-size: 20px;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+footer .footer-text {
+    color: rgba(255,255,255,0.7);
+    font-size: 13px;
+}
+
+/* ============================================
+   نوتیفیکیشن
+   ============================================ */
+.notification {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--white);
+    color: var(--dark);
+    padding: 14px 30px;
+    border-radius: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    z-index: 9999;
+    font-weight: 600;
+    font-size: 14px;
+    border-right: 4px solid var(--secondary);
+}
+
+/* ============================================
+   دکمه اسکرول به بالا
+   ============================================ */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
+    color: var(--white);
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+    transition: var(--transition);
+    z-index: 999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+.scroll-top-btn:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+}
+
+.scroll-top-btn.show {
+    display: flex;
+}
+
+/* ============================================
+   رسپانسیو
+   ============================================ */
+@media (max-width: 992px) {
+    .book-detail {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-detail-image {
+        padding: 20px;
+    }
+    
+    .book-detail-info {
+        padding: 30px;
+    }
+    
+    .books-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .navbar-nav .nav-link {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .cart-btn {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .books-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .book-card-image {
+        height: 200px;
+    }
+    
+    .book-card-body {
+        padding: 15px;
+    }
+    
+    .book-card-title {
+        font-size: 15px;
+    }
+    
+    .cart-item {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 15px;
+    }
+    
+    .cart-item-price {
+        min-width: auto;
+    }
+    
+    .form-container {
+        padding: 25px;
+    }
+    
+    .book-detail-info {
+        padding: 25px;
+    }
+    
+    .book-detail-info h1 {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .book-card-actions {
+        flex-direction: column;
+    }
+    
+    .book-detail-info .actions {
+        flex-direction: column;
+    }
+    
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .cart-item-quantity {
+        justify-content: center;
+    }
+}
+/* ============================================
+   اضافات جدید برای رفع مشکلات ریسپانسیو
+   ============================================ */
+
+/* اطمینان از اینکه همه تصاویر به درستی نمایش داده می‌شوند */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* رفع مشکل سرریز شدن محتوا در موبایل */
+.container {
+    width: 100%;
+    overflow-x: hidden;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* استایل بهتر برای کارت‌های کتاب در صفحه اصلی */
+.books-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+    padding: 10px 0;
+    width: 100%;
+}
+
+/* اطمینان از اینکه کارت‌ها در موبایل به درستی نمایش داده می‌شوند */
+@media (max-width: 768px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .book-card {
+        max-width: 100%;
+        margin: 0;
+    }
+    
+    .book-card-image {
+        height: 200px;
+    }
+    
+    .book-card-title {
+        font-size: 16px;
+    }
+    
+    /* بهبود صفحه جزئیات کتاب در موبایل */
+    .book-detail {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .book-detail-image {
+        padding: 20px;
+        max-height: 300px;
+    }
+    
+    .book-detail-image img {
+        max-height: 260px;
+        width: auto;
+        margin: 0 auto;
+        display: block;
+    }
+    
+    .book-detail-info {
+        padding: 20px;
+    }
+    
+    .book-detail-info h1 {
+        font-size: 22px;
+    }
+    
+    .book-detail-info .price {
+        font-size: 28px;
+    }
+    
+    .actions {
+        flex-direction: column;
+    }
+    
+    .actions .btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+}
+
+/* برای تبلت‌ها */
+@media (min-width: 769px) and (max-width: 992px) {
+    .books-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+    
+    .book-detail {
+        grid-template-columns: 300px 1fr;
+    }
+}
+
+/* بهبود نمایش سبد خرید در موبایل */
+@media (max-width: 480px) {
+    .cart-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+    
+    .cart-item-details {
+        width: 100%;
+    }
+    
+    .cart-item-quantity {
+        justify-content: center;
+    }
+    
+    .cart-item-price {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .cart-item-remove {
+        width: 100%;
+    }
+    
+    .cart-total {
+        text-align: center;
+    }
+    
+    .cart-total .btn {
+        width: 100%;
+    }
+}
+
+/* اطمینان از اینکه دکمه اسکرول در همه جا کار می‌کند */
+.scroll-top-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+    z-index: 1000;
+}
+
+/* رفع مشکل نمایش navbar در موبایل */
+@media (max-width: 768px) {
+    .navbar .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .navbar-nav {
+        flex-direction: column;
+        width: 100%;
+        gap: 5px;
+    }
+    
+    .navbar-nav .nav-link,
+    .cart-btn {
+        width: 100%;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    .cart-btn {
+        position: relative;
+    }
+    
+    .cart-count {
+        position: absolute;
+        top: -8px;
+        right: 10px;
+    }
+}
