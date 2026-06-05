@@ -1,32 +1,62 @@
 /* ============================================
-   کتابفروشی من - استایل نهایی
+   کتابفروشی من - Dark Luxury Theme
+   رنگ‌ها: آبی و بنفش
    ============================================ */
 
+@import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
+
 :root {
-    --primary: #6c5ce7;
-    --primary-dark: #5a4bd1;
-    --primary-light: #a29bfe;
-    --secondary: #00b894;
-    --secondary-dark: #00a381;
-    --accent: #fdcb6e;
-    --dark: #2d3436;
-    --dark-light: #636e72;
-    --light: #f8f9fa;
-    --white: #ffffff;
-    --red: #e74c3c;
-    --red-light: #ff7675;
-    --shadow-sm: 0 2px 8px rgba(0,0,0,0.06);
-    --shadow-md: 0 5px 20px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 40px rgba(0,0,0,0.15);
-    --shadow-xl: 0 20px 60px rgba(0,0,0,0.2);
-    --radius-sm: 8px;
-    --radius-md: 12px;
-    --radius-lg: 20px;
-    --radius-xl: 28px;
-    --transition: all 0.3s ease;
+    /* رنگ‌های اصلی */
+    --primary:        #7c6bff;
+    --primary-dark:   #5c4de8;
+    --primary-light:  #a99cff;
+    --primary-glow:   rgba(124, 107, 255, 0.35);
+
+    --accent:         #38b6ff;
+    --accent-dark:    #1a9fea;
+    --accent-glow:    rgba(56, 182, 255, 0.3);
+
+    --success:        #00e5a0;
+    --danger:         #ff5c7c;
+
+    /* پس‌زمینه‌های تاریک */
+    --bg-deep:        #07080f;
+    --bg-base:        #0d0e1a;
+    --bg-card:        #12142a;
+    --bg-card-hover:  #181a35;
+    --bg-input:       #1a1c32;
+    --bg-elevated:    #1e2040;
+
+    /* متن */
+    --text-primary:   #f0f0ff;
+    --text-secondary: #8b8db0;
+    --text-muted:     #555775;
+
+    /* خطوط */
+    --border:         rgba(124, 107, 255, 0.15);
+    --border-bright:  rgba(124, 107, 255, 0.4);
+
+    /* سایه‌ها */
+    --shadow-sm:  0 2px 12px rgba(0,0,0,0.3);
+    --shadow-md:  0 8px 32px rgba(0,0,0,0.4);
+    --shadow-lg:  0 20px 60px rgba(0,0,0,0.5);
+    --shadow-glow: 0 0 40px var(--primary-glow);
+
+    /* شعاع */
+    --r-sm:  8px;
+    --r-md:  14px;
+    --r-lg:  20px;
+    --r-xl:  28px;
+    --r-full: 9999px;
+
+    --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-* {
+/* ============================================
+   ریست و پایه
+   ============================================ */
+*, *::before, *::after {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -37,29 +67,38 @@ html {
 }
 
 body {
-    font-family: 'Tahoma', 'Segoe UI', Arial, sans-serif;
-    background: #f0f2f5;
-    color: var(--dark);
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    background: var(--bg-base);
+    color: var(--text-primary);
     line-height: 1.8;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    direction: rtl;
+    /* پس‌زمینه با texture */
+    background-image:
+        radial-gradient(ellipse at 20% 20%, rgba(124,107,255,0.07) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 80%, rgba(56,182,255,0.05) 0%, transparent 60%);
 }
 
-main {
-    flex: 1;
-}
+main { flex: 1; }
+
+img { max-width: 100%; display: block; }
+
+a { text-decoration: none; color: inherit; }
 
 /* ============================================
-   هدر و نوبار
+   Navbar
    ============================================ */
 .navbar {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-    padding: 12px 0;
+    background: rgba(7, 8, 15, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    padding: 0;
     position: sticky;
     top: 0;
     z-index: 1000;
-    box-shadow: var(--shadow-lg);
 }
 
 .navbar::after {
@@ -68,8 +107,8 @@ main {
     bottom: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary-light), var(--primary));
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
 }
 
 .navbar .container {
@@ -79,7 +118,7 @@ main {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    flex-wrap: wrap;
+    height: 70px;
     gap: 15px;
 }
 
@@ -87,132 +126,176 @@ main {
     display: flex;
     align-items: center;
     gap: 10px;
-    color: var(--white);
-    font-size: 24px;
-    font-weight: 900;
-    text-decoration: none;
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+    color: var(--text-primary);
+    font-size: 20px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
     transition: var(--transition);
 }
 
+.navbar-brand .logo-icon {
+    font-size: 26px;
+    filter: drop-shadow(0 0 10px var(--primary-glow));
+}
+
 .navbar-brand:hover {
-    transform: scale(1.05);
-    color: var(--accent);
+    color: var(--primary-light);
 }
 
 .navbar-nav {
     display: flex;
     list-style: none;
-    gap: 10px;
+    gap: 6px;
     align-items: center;
 }
 
 .navbar-nav .nav-link {
-    color: rgba(255,255,255,0.9);
-    text-decoration: none;
-    padding: 10px 20px;
-    border-radius: 25px;
+    color: var(--text-secondary);
+    padding: 8px 18px;
+    border-radius: var(--r-full);
     font-weight: 500;
     font-size: 14px;
     transition: var(--transition);
+    border: 1px solid transparent;
 }
 
 .navbar-nav .nav-link:hover {
-    background: rgba(255,255,255,0.1);
-    color: var(--white);
-    transform: translateY(-2px);
+    color: var(--text-primary);
+    background: rgba(124,107,255,0.1);
+    border-color: var(--border);
 }
 
 .navbar-nav .nav-link.active {
-    background: var(--primary);
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4);
+    color: var(--primary-light);
+    background: rgba(124,107,255,0.15);
+    border-color: var(--border-bright);
 }
-
 
 .cart-btn {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: rgba(255,255,255,0.15);
-    color: var(--white);
-    padding: 10px 22px;
-    border-radius: 25px;
-    text-decoration: none;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    padding: 9px 20px;
+    border-radius: var(--r-full);
     font-weight: 600;
     font-size: 14px;
     transition: var(--transition);
-    border: 2px solid rgba(255,255,255,0.2);
     position: relative;
+    box-shadow: 0 4px 20px var(--primary-glow);
+    border: 1px solid rgba(124,107,255,0.5);
 }
 
 .cart-btn:hover {
-    background: rgba(255,255,255,0.25);
-    border-color: rgba(255,255,255,0.4);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    box-shadow: 0 6px 30px var(--primary-glow);
     transform: translateY(-2px);
-    color: var(--white);
+    color: white;
 }
 
 .cart-count {
-    background: var(--red);
-    color: var(--white);
+    background: var(--accent);
+    color: var(--bg-deep);
     border-radius: 50%;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 12px;
-    font-weight: bold;
+    font-size: 11px;
+    font-weight: 800;
     position: absolute;
     top: -8px;
     right: -8px;
-    box-shadow: 0 2px 8px rgba(231, 76, 60, 0.5);
+    box-shadow: 0 2px 10px var(--accent-glow);
+    transition: transform 0.2s;
 }
 
 /* ============================================
-   محتوای اصلی
+   Container
    ============================================ */
 .container {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 30px 25px;
-    display: flexbox;
+    padding: 35px 25px;
+    width: 100%;
 }
 
 /* ============================================
-   کارت کتاب‌ها - گرید منظم
+   Hero / Page Header
+   ============================================ */
+.page-hero {
+    text-align: center;
+    padding: 50px 20px 35px;
+    position: relative;
+}
+
+.page-hero h1 {
+    font-size: 36px;
+    font-weight: 900;
+    background: linear-gradient(135deg, var(--text-primary), var(--primary-light), var(--accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 10px;
+}
+
+.page-hero p {
+    color: var(--text-secondary);
+    font-size: 16px;
+}
+
+/* ============================================
+   کارت کتاب‌ها
    ============================================ */
 .books-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: 24px;
     padding: 10px 0;
+    width: 100%;
 }
 
 .book-card {
-    background: var(--white);
-    border-radius: 16px;
+    background: var(--bg-card);
+    border-radius: var(--r-lg);
     overflow: hidden;
-    box-shadow: 0 3px 15px rgba(0,0,0,0.08);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    border: 1px solid #eee;
-    height: 100%;
+    border: 1px solid var(--border);
+    transition: var(--transition);
     display: flex;
     flex-direction: column;
+    position: relative;
+}
+
+.book-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: var(--r-lg);
+    background: linear-gradient(135deg, rgba(124,107,255,0.08), transparent);
+    opacity: 0;
+    transition: var(--transition);
+    pointer-events: none;
+    z-index: 0;
 }
 
 .book-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
-    border-color: var(--primary-light);
+    transform: translateY(-8px);
+    border-color: var(--border-bright);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px var(--border-bright), var(--shadow-glow);
+}
+
+.book-card:hover::before {
+    opacity: 1;
 }
 
 .book-card-image {
     position: relative;
     overflow: hidden;
-    height: 240px;
-    background: #f5f5f5;
+    height: 250px;
+    background: var(--bg-elevated);
+    flex-shrink: 0;
 }
 
 .book-card-image img {
@@ -226,18 +309,29 @@ main {
     transform: scale(1.08);
 }
 
-.book-card-image .category-badge {
+.book-card-image::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    background: linear-gradient(to top, var(--bg-card), transparent);
+}
+
+.category-badge {
     position: absolute;
     top: 12px;
     right: 12px;
-    background: var(--primary);
-    color: var(--white);
-    padding: 5px 14px;
-    border-radius: 20px;
+    background: rgba(7,8,15,0.8);
+    backdrop-filter: blur(10px);
+    color: var(--primary-light);
+    padding: 4px 12px;
+    border-radius: var(--r-full);
     font-size: 11px;
     font-weight: 600;
     z-index: 2;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    border: 1px solid var(--border-bright);
 }
 
 .book-card-body {
@@ -245,13 +339,15 @@ main {
     display: flex;
     flex-direction: column;
     flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .book-card-title {
-    font-size: 17px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 7px;
     line-height: 1.5;
     display: -webkit-box;
     -webkit-line-clamp: 2;
@@ -260,25 +356,25 @@ main {
 }
 
 .book-card-author {
-    color: var(--dark-light);
+    color: var(--text-muted);
     font-size: 13px;
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
 
 .book-card-price {
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 900;
-    color: var(--secondary);
-    margin: auto 0 15px 0;
-    padding: 8px 0;
-    border-top: 1px dashed #e0e0e0;
+    color: var(--accent);
+    margin: auto 0 16px 0;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
 }
 
 .book-card-price::after {
     content: ' تومان';
     font-size: 11px;
     font-weight: 500;
-    color: var(--dark-light);
+    color: var(--text-muted);
     margin-right: 4px;
 }
 
@@ -289,10 +385,8 @@ main {
 
 .book-card-actions .btn {
     flex: 1;
-    padding: 10px 15px;
+    padding: 10px 12px;
     font-size: 13px;
-    border-radius: 10px;
-    text-align: center;
 }
 
 /* ============================================
@@ -305,153 +399,169 @@ main {
     gap: 6px;
     padding: 12px 24px;
     border: none;
-    border-radius: var(--radius-md);
+    border-radius: var(--r-md);
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
     text-decoration: none;
     transition: var(--transition);
-    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
+    white-space: nowrap;
+    border: 1px solid transparent;
 }
 
 .btn:active {
-    transform: scale(0.96);
+    transform: scale(0.96) !important;
 }
 
 .btn-primary {
-    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
-    color: var(--white);
-    box-shadow: 0 4px 12px rgba(108, 92, 231, 0.25);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 15px var(--primary-glow);
+    border-color: rgba(124,107,255,0.4);
 }
 
 .btn-primary:hover {
-    background: linear-gradient(135deg, #5a4bd1, #4a3db5);
-    box-shadow: 0 6px 20px rgba(108, 92, 231, 0.4);
+    background: linear-gradient(135deg, var(--primary-light), var(--primary));
+    box-shadow: 0 8px 25px var(--primary-glow);
     transform: translateY(-2px);
-    color: var(--white);
+    color: white;
 }
 
 .btn-secondary {
-    background: linear-gradient(135deg, #00b894, #00a381);
-    color: var(--white);
-    box-shadow: 0 4px 12px rgba(0, 184, 148, 0.25);
+    background: rgba(124,107,255,0.12);
+    color: var(--primary-light);
+    border-color: var(--border);
 }
 
 .btn-secondary:hover {
-    background: linear-gradient(135deg, #00a381, #008f6b);
-    box-shadow: 0 6px 20px rgba(0, 184, 148, 0.4);
+    background: rgba(124,107,255,0.22);
+    border-color: var(--border-bright);
     transform: translateY(-2px);
-    color: var(--white);
+    color: var(--primary-light);
 }
 
 .btn-outline {
     background: transparent;
-    color: var(--primary);
-    border: 2px solid var(--primary);
+    color: var(--primary-light);
+    border: 1px solid var(--border-bright);
 }
 
 .btn-outline:hover {
-    background: var(--primary);
-    color: var(--white);
+    background: rgba(124,107,255,0.1);
     transform: translateY(-2px);
+    color: var(--primary-light);
 }
 
 .btn-success {
-    background: linear-gradient(135deg, #27ae60, #2ecc71);
-    color: var(--white);
-    box-shadow: 0 4px 12px rgba(39, 174, 96, 0.25);
+    background: linear-gradient(135deg, #00c47a, var(--success));
+    color: var(--bg-deep);
+    font-weight: 700;
+    box-shadow: 0 4px 15px rgba(0,229,160,0.3);
 }
 
 .btn-success:hover {
-    box-shadow: 0 6px 20px rgba(39, 174, 96, 0.4);
+    box-shadow: 0 8px 25px rgba(0,229,160,0.4);
     transform: translateY(-2px);
-    color: var(--white);
+    color: var(--bg-deep);
 }
 
 .btn-danger {
-    background: linear-gradient(135deg, #e74c3c, #c0392b);
-    color: var(--white);
+    background: linear-gradient(135deg, #e8416a, var(--danger));
+    color: white;
+    box-shadow: 0 4px 15px rgba(255,92,124,0.3);
 }
 
 .btn-danger:hover {
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 8px 25px rgba(255,92,124,0.4);
     transform: translateY(-2px);
-    color: var(--white);
+    color: white;
 }
 
 .btn-lg {
-    padding: 16px 35px;
+    padding: 15px 35px;
     font-size: 16px;
-    border-radius: 14px;
+    border-radius: var(--r-lg);
 }
 
 .btn-block {
     width: 100%;
-    display: flex;
 }
 
 .btn-sm {
-    padding: 8px 16px;
+    padding: 7px 14px;
     font-size: 12px;
-    border-radius: 8px;
+    border-radius: var(--r-sm);
 }
 
 /* ============================================
-   پیغام خالی
+   Empty State
    ============================================ */
 .empty-state {
     text-align: center;
     padding: 80px 20px;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
+    grid-column: 1 / -1;
 }
 
 .empty-state-icon {
     font-size: 70px;
     margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px var(--primary-glow));
 }
 
 .empty-state h3 {
     font-size: 22px;
-    color: var(--dark-light);
+    color: var(--text-secondary);
     margin-bottom: 10px;
+    font-weight: 700;
 }
 
 .empty-state p {
-    color: #aaa;
+    color: var(--text-muted);
     font-size: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 25px;
 }
 
 /* ============================================
-   صفحه تک کتاب - کاملاً بازطراحی شده
+   صفحه تک کتاب
    ============================================ */
 .book-detail {
     display: grid;
-    grid-template-columns: 380px 1fr;
+    grid-template-columns: 360px 1fr;
     gap: 40px;
-    background: var(--white);
-    padding: 0;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
     overflow: hidden;
 }
 
 .book-detail-image {
-    background: #f8f8f8;
-    padding: 30px;
+    background: var(--bg-elevated);
+    padding: 35px;
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.book-detail-image::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(124,107,255,0.1), transparent 70%);
 }
 
 .book-detail-image img {
     width: 100%;
-    max-height: 500px;
+    max-height: 460px;
     object-fit: contain;
-    border-radius: 12px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: var(--r-md);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1;
 }
 
 .book-detail-info {
@@ -459,173 +569,189 @@ main {
 }
 
 .book-detail-info h1 {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 900;
-    color: var(--dark);
+    color: var(--text-primary);
     margin-bottom: 12px;
     line-height: 1.4;
 }
 
 .book-detail-info .author {
-    font-size: 16px;
-    color: var(--dark-light);
+    font-size: 15px;
+    color: var(--text-secondary);
     margin-bottom: 15px;
-    padding-bottom: 15px;
-    border-bottom: 2px solid #f0f0f0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
 }
 
 .book-detail-info .category {
     display: inline-block;
-    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
-    color: var(--white);
-    padding: 6px 18px;
-    border-radius: 20px;
-    font-size: 13px;
+    background: rgba(124,107,255,0.15);
+    color: var(--primary-light);
+    padding: 5px 16px;
+    border-radius: var(--r-full);
+    font-size: 12px;
     font-weight: 600;
-    margin-bottom: 20px;
+    margin-bottom: 22px;
+    border: 1px solid var(--border-bright);
 }
 
 .book-detail-info .price-box {
-    background: linear-gradient(135deg, #f0fff4, #e8f8f0);
-    padding: 20px 25px;
-    border-radius: 16px;
-    margin: 25px 0;
-    border: 2px dashed #00b894;
+    background: linear-gradient(135deg, rgba(56,182,255,0.08), rgba(124,107,255,0.08));
+    padding: 20px 24px;
+    border-radius: var(--r-lg);
+    margin: 22px 0;
+    border: 1px solid rgba(56,182,255,0.2);
 }
 
 .book-detail-info .price {
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 900;
-    color: #00b894;
+    color: var(--accent);
 }
 
 .book-detail-info .price::after {
     content: ' تومان';
     font-size: 14px;
     font-weight: 500;
-    color: #636e72;
+    color: var(--text-muted);
     margin-right: 6px;
 }
 
 .book-detail-info .description {
-    color: var(--dark-light);
+    color: var(--text-secondary);
     line-height: 2;
-    margin-top: 25px;
-    padding-top: 25px;
-    border-top: 2px solid #f0f0f0;
+    margin-top: 22px;
+    padding-top: 22px;
+    border-top: 1px solid var(--border);
 }
 
 .book-detail-info .description h4 {
-    font-size: 18px;
+    font-size: 17px;
     font-weight: 700;
-    color: var(--dark);
-    margin-bottom: 15px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
 }
 
 .book-detail-info .actions {
     display: flex;
     gap: 12px;
-    margin-top: 30px;
+    margin-top: 28px;
+    flex-wrap: wrap;
 }
 
 /* ============================================
-   فرم اضافه کردن کتاب
+   فرم‌ها
    ============================================ */
 .form-container {
-    background: var(--white);
+    background: var(--bg-card);
     padding: 40px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
     max-width: 650px;
     margin: 30px auto;
 }
 
 .form-container h2 {
     text-align: center;
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 900;
-    color: var(--dark);
+    color: var(--text-primary);
     margin-bottom: 30px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #f0f0f0;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
 }
 
-.form-group {
-    margin-bottom: 20px;
-}
+/* استایل فرم‌های Bootstrap-ish */
+.mb-3 { margin-bottom: 20px; }
+.row { display: flex; gap: 16px; flex-wrap: wrap; }
+.col-md-6 { flex: 1; min-width: 200px; }
 
+.form-label,
 .form-group label {
     display: block;
     margin-bottom: 8px;
     font-weight: 600;
-    color: var(--dark);
+    color: var(--text-secondary);
     font-size: 14px;
 }
 
+.form-control,
+.form-select,
 .form-group input,
 .form-group textarea,
 .form-group select {
     width: 100%;
-    padding: 14px 18px;
-    border: 2px solid #e8e8e8;
-    border-radius: 12px;
+    padding: 13px 16px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    border-radius: var(--r-md);
     font-size: 14px;
-    font-family: 'Tahoma', 'Segoe UI', sans-serif;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
     transition: var(--transition);
-    background: #fafafa;
-    color: var(--dark);
+    color: var(--text-primary);
+    direction: rtl;
 }
 
+.form-control:focus,
+.form-select:focus,
 .form-group input:focus,
 .form-group textarea:focus,
 .form-group select:focus {
     outline: none;
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(108, 92, 231, 0.08);
-    background: var(--white);
+    box-shadow: 0 0 0 4px rgba(124,107,255,0.12);
+    background: rgba(124,107,255,0.05);
 }
 
+.form-control::placeholder { color: var(--text-muted); }
+
+textarea.form-control,
 .form-group textarea {
     resize: vertical;
     min-height: 120px;
 }
 
+select.form-control option,
+.form-select option {
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+}
+
 /* ============================================
-   سبد خرید - کاملاً بازطراحی شده
+   سبد خرید
    ============================================ */
 .cart-container {
-    background: var(--white);
-    padding: 30px;
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
-    
+    background: var(--bg-card);
+    padding: 32px;
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
 }
 
 .cart-container h2 {
-    font-size: 26px;
+    font-size: 24px;
     font-weight: 900;
-    color: var(--dark);
+    color: var(--text-primary);
     margin-bottom: 25px;
-    padding-bottom: 15px;
-    border-bottom: 3px solid #f0f0f0;
-    
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
 }
 
 .cart-item {
     display: flex;
     align-items: center;
     gap: 15px;
-    padding: 18px;
-    background: #fafafa;
-    border-radius: 14px;
-    margin-bottom: 12px;
+    padding: 16px;
+    background: var(--bg-elevated);
+    border-radius: var(--r-md);
+    margin-bottom: 10px;
     transition: var(--transition);
-    border: 1px solid #eee;
+    border: 1px solid var(--border);
 }
 
 .cart-item:hover {
-    background: #f5f5f5;
-    border-color: #ddd;
+    border-color: var(--border-bright);
+    background: var(--bg-card-hover);
 }
 
 .cart-item-details {
@@ -636,7 +762,7 @@ main {
 .cart-item-details h5 {
     font-size: 15px;
     font-weight: 700;
-    color: var(--dark);
+    color: var(--text-primary);
     margin-bottom: 4px;
     white-space: nowrap;
     overflow: hidden;
@@ -645,24 +771,24 @@ main {
 
 .cart-item-details .unit-price {
     font-size: 12px;
-    color: var(--dark-light);
+    color: var(--text-muted);
 }
 
 .cart-item-quantity {
     display: flex;
     align-items: center;
     gap: 8px;
-    background: var(--white);
+    background: var(--bg-input);
     padding: 5px 10px;
-    border-radius: 25px;
-    border: 2px solid #eee;
+    border-radius: var(--r-full);
+    border: 1px solid var(--border);
 }
 
 .cart-item-quantity button {
-    width: 30px;
-    height: 30px;
+    width: 28px;
+    height: 28px;
     border: none;
-    background: #f0f0f0;
+    background: var(--bg-elevated);
     border-radius: 50%;
     cursor: pointer;
     font-size: 16px;
@@ -671,96 +797,124 @@ main {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: var(--dark);
+    color: var(--text-secondary);
 }
 
 .cart-item-quantity button:hover {
     background: var(--primary);
-    color: var(--white);
+    color: white;
 }
 
 .cart-item-quantity span {
     font-size: 15px;
     font-weight: 700;
-    min-width: 25px;
+    min-width: 24px;
     text-align: center;
+    color: var(--text-primary);
 }
 
 .cart-item-price {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
-    color: var(--secondary);
-    min-width: 100px;
+    color: var(--accent);
+    min-width: 120px;
     text-align: center;
     white-space: nowrap;
 }
 
 .cart-item-remove {
-    background: #ff7675;
-    color: var(--white);
-    border: none;
-    padding: 8px 14px;
-    border-radius: 8px;
+    background: rgba(255,92,124,0.12);
+    color: var(--danger);
+    border: 1px solid rgba(255,92,124,0.25);
+    padding: 7px 14px;
+    border-radius: var(--r-sm);
     cursor: pointer;
     font-size: 12px;
     font-weight: 600;
     transition: var(--transition);
-    white-space: nowrap;
+    font-family: 'Vazirmatn', 'Tahoma', sans-serif;
 }
 
 .cart-item-remove:hover {
-    background: #e74c3c;
+    background: var(--danger);
+    color: white;
+    border-color: var(--danger);
 }
 
 .cart-total {
     margin-top: 25px;
     padding: 25px;
-    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
-    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(124,107,255,0.1), rgba(56,182,255,0.08));
+    border-radius: var(--r-lg);
+    border: 1px solid var(--border-bright);
 }
 
 .cart-total h3 {
-    font-size: 20px;
-    font-weight: 800;
-    color: var(--dark);
-    margin-bottom: 12px;
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
 }
 
 .cart-total .total-price {
-    font-size: 30px;
+    font-size: 32px;
     font-weight: 900;
-    color: var(--secondary);
+    color: var(--accent);
+    display: block;
+    margin-bottom: 18px;
 }
 
-.cart-total .btn {
-    margin-top: 15px;
+.cart-total .btn { margin-top: 0; }
+
+/* ============================================
+   Alert
+   ============================================ */
+.alert {
+    padding: 16px 22px;
+    border-radius: var(--r-md);
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 20px;
+}
+
+.alert-success {
+    background: rgba(0,229,160,0.1);
+    color: var(--success);
+    border: 1px solid rgba(0,229,160,0.25);
+}
+
+.alert-danger {
+    background: rgba(255,92,124,0.1);
+    color: var(--danger);
+    border: 1px solid rgba(255,92,124,0.25);
 }
 
 /* ============================================
-   صفحه موفقیت سفارش
+   موفقیت سفارش
    ============================================ */
 .success-message {
     text-align: center;
     padding: 60px 20px;
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: var(--shadow-md);
+    background: var(--bg-card);
+    border-radius: var(--r-xl);
+    border: 1px solid var(--border);
 }
 
 .success-icon {
-    font-size: 90px;
-    color: var(--secondary);
+    font-size: 80px;
     margin-bottom: 20px;
+    filter: drop-shadow(0 0 20px rgba(0,229,160,0.4));
 }
 
 .success-message h2 {
     font-size: 26px;
-    color: var(--dark);
+    color: var(--text-primary);
     margin-bottom: 10px;
+    font-weight: 800;
 }
 
 .success-message p {
-    color: var(--dark-light);
+    color: var(--text-secondary);
     font-size: 16px;
     margin-bottom: 25px;
 }
@@ -769,12 +923,13 @@ main {
    فوتر
    ============================================ */
 footer {
-    background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-    color: var(--white);
+    background: var(--bg-deep);
+    color: var(--text-secondary);
     text-align: center;
-    padding: 25px 20px;
+    padding: 30px 20px;
     margin-top: 80px;
     position: relative;
+    border-top: 1px solid var(--border);
 }
 
 footer::before {
@@ -783,8 +938,8 @@ footer::before {
     top: 0;
     left: 0;
     right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary), var(--primary-light), var(--primary));
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
 }
 
 footer .footer-content {
@@ -793,13 +948,14 @@ footer .footer-content {
 }
 
 footer .footer-title {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 800;
     margin-bottom: 8px;
+    color: var(--text-primary);
 }
 
 footer .footer-text {
-    color: rgba(255,255,255,0.7);
+    color: var(--text-muted);
     font-size: 13px;
 }
 
@@ -810,16 +966,21 @@ footer .footer-text {
     position: fixed;
     top: 20px;
     left: 50%;
-    transform: translateX(-50%);
-    background: var(--white);
-    color: var(--dark);
-    padding: 14px 30px;
-    border-radius: 50px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+    transform: translateX(-50%) translateY(-10px);
+    background: var(--bg-elevated);
+    color: var(--text-primary);
+    padding: 14px 28px;
+    border-radius: var(--r-full);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5), 0 0 0 1px var(--border-bright);
     z-index: 9999;
     font-weight: 600;
     font-size: 14px;
-    border-right: 4px solid var(--secondary);
+    animation: notifIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+@keyframes notifIn {
+    from { transform: translateX(-50%) translateY(-20px); opacity: 0; }
+    to   { transform: translateX(-50%) translateY(0);     opacity: 1; }
 }
 
 /* ============================================
@@ -827,17 +988,17 @@ footer .footer-text {
    ============================================ */
 .scroll-top-btn {
     position: fixed;
-    bottom: 30px;
-    left: 30px;
-    width: 48px;
-    height: 48px;
-    background: linear-gradient(135deg, #6c5ce7, #5a4bd1);
-    color: var(--white);
+    bottom: 25px;
+    left: 25px;
+    width: 46px;
+    height: 46px;
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+    color: white;
     border: none;
     border-radius: 50%;
-    font-size: 22px;
+    font-size: 20px;
     cursor: pointer;
-    box-shadow: 0 5px 20px rgba(108, 92, 231, 0.4);
+    box-shadow: 0 5px 20px var(--primary-glow);
     transition: var(--transition);
     z-index: 999;
     display: none;
@@ -847,287 +1008,513 @@ footer .footer-text {
 
 .scroll-top-btn:hover {
     transform: translateY(-4px);
-    box-shadow: 0 8px 25px rgba(108, 92, 231, 0.5);
+    box-shadow: 0 10px 30px var(--primary-glow);
 }
 
-.scroll-top-btn.show {
-    display: flex;
+.scroll-top-btn.show { display: flex; }
+
+/* ============================================
+   Page Load Animation
+   ============================================ */
+.book-card {
+    animation: fadeInUp 0.5s ease both;
+}
+
+.book-card:nth-child(1) { animation-delay: 0.05s; }
+.book-card:nth-child(2) { animation-delay: 0.1s; }
+.book-card:nth-child(3) { animation-delay: 0.15s; }
+.book-card:nth-child(4) { animation-delay: 0.2s; }
+.book-card:nth-child(5) { animation-delay: 0.25s; }
+.book-card:nth-child(6) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ============================================
-   رسپانسیو
+   Utility - Bootstrap compat
+   ============================================ */
+.w-100 { width: 100% !important; }
+.text-center { text-align: center; }
+.d-flex { display: flex; }
+.bg-light {
+    background: var(--bg-card) !important;
+    border: 1px solid var(--border);
+    border-radius: var(--r-xl) !important;
+}
+.p-4 { padding: 30px !important; }
+.rounded { border-radius: var(--r-md) !important; }
+.shadow { box-shadow: var(--shadow-md) !important; }
+
+/* ============================================
+   Responsive - Tablet
    ============================================ */
 @media (max-width: 992px) {
     .book-detail {
         grid-template-columns: 1fr;
     }
-    
+
     .book-detail-image {
-        padding: 20px;
+        max-height: 320px;
+        padding: 25px;
     }
-    
+
+    .book-detail-image img {
+        max-height: 270px;
+        width: auto;
+        margin: 0 auto;
+    }
+
     .book-detail-info {
         padding: 30px;
     }
-    
+
     .books-grid {
-        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        gap: 20px;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px;
     }
 }
 
+/* ============================================
+   Responsive - Mobile
+   ============================================ */
 @media (max-width: 768px) {
     .navbar .container {
         flex-direction: column;
-        text-align: center;
+        height: auto;
+        padding: 14px 20px;
+        gap: 10px;
     }
-    
+
     .navbar-nav {
-        flex-direction: column;
+        flex-direction: row;
+        flex-wrap: wrap;
         width: 100%;
+        justify-content: center;
+        gap: 6px;
     }
-    
+
     .navbar-nav .nav-link {
-        width: 100%;
-        text-align: center;
+        padding: 7px 14px;
+        font-size: 13px;
     }
-    
+
     .cart-btn {
         width: 100%;
         justify-content: center;
     }
-    
+
+    .cart-count {
+        right: 10px;
+        top: -8px;
+    }
+
     .books-grid {
         grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        gap: 14px;
     }
-    
+
     .book-card-image {
         height: 200px;
     }
-    
+
     .book-card-body {
         padding: 15px;
     }
-    
-    .book-card-title {
-        font-size: 15px;
-    }
-    
+
+    .book-card-title { font-size: 14px; }
+    .book-card-price { font-size: 16px; }
+
     .cart-item {
         flex-wrap: wrap;
-        gap: 12px;
-        padding: 15px;
-    }
-    
-    .cart-item-price {
-        min-width: auto;
-    }
-    
-    .form-container {
-        padding: 25px;
-    }
-    
-    .book-detail-info {
-        padding: 25px;
-    }
-    
-    .book-detail-info h1 {
-        font-size: 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .books-grid {
-        grid-template-columns: 1fr;
-    }
-    
-    .book-card-actions {
-        flex-direction: column;
-    }
-    
-    .book-detail-info .actions {
-        flex-direction: column;
-    }
-    
-    .cart-item {
-        flex-direction: column;
-        text-align: center;
-    }
-    
-    .cart-item-quantity {
-        justify-content: center;
-    }
-}
-/* ============================================
-   اضافات جدید برای رفع مشکلات ریسپانسیو
-   ============================================ */
-
-/* اطمینان از اینکه همه تصاویر به درستی نمایش داده می‌شوند */
-img {
-    max-width: 100%;
-    height: auto;
-}
-
-/* رفع مشکل سرریز شدن محتوا در موبایل */
-.container {
-    width: 100%;
-    overflow-x: hidden;
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-/* استایل بهتر برای کارت‌های کتاب در صفحه اصلی */
-.books-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 25px;
-    padding: 10px 0;
-    width: 100%;
-}
-
-/* اطمینان از اینکه کارت‌ها در موبایل به درستی نمایش داده می‌شوند */
-@media (max-width: 768px) {
-    .books-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .book-card {
-        max-width: 100%;
-        margin: 0;
-    }
-    
-    .book-card-image {
-        height: 200px;
-    }
-    
-    .book-card-title {
-        font-size: 16px;
-    }
-    
-    /* بهبود صفحه جزئیات کتاب در موبایل */
-    .book-detail {
-        grid-template-columns: 1fr;
-        gap: 20px;
-    }
-    
-    .book-detail-image {
-        padding: 20px;
-        max-height: 300px;
-    }
-    
-    .book-detail-image img {
-        max-height: 260px;
-        width: auto;
-        margin: 0 auto;
-        display: block;
-    }
-    
-    .book-detail-info {
-        padding: 20px;
-    }
-    
-    .book-detail-info h1 {
-        font-size: 22px;
-    }
-    
-    .book-detail-info .price {
-        font-size: 28px;
-    }
-    
-    .actions {
-        flex-direction: column;
-    }
-    
-    .actions .btn {
-        width: 100%;
-        text-align: center;
-        justify-content: center;
-    }
-}
-
-/* برای تبلت‌ها */
-@media (min-width: 769px) and (max-width: 992px) {
-    .books-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 20px;
-    }
-    
-    .book-detail {
-        grid-template-columns: 300px 1fr;
-    }
-}
-
-/* بهبود نمایش سبد خرید در موبایل */
-@media (max-width: 480px) {
-    .cart-item {
-        flex-direction: column;
-        text-align: center;
-        gap: 12px;
-    }
-    
-    .cart-item-details {
-        width: 100%;
-    }
-    
-    .cart-item-quantity {
-        justify-content: center;
-    }
-    
-    .cart-item-price {
-        width: 100%;
-        text-align: center;
-    }
-    
-    .cart-item-remove {
-        width: 100%;
-    }
-    
-    .cart-total {
-        text-align: center;
-    }
-    
-    .cart-total .btn {
-        width: 100%;
-    }
-}
-
-/* اطمینان از اینکه دکمه اسکرول در همه جا کار می‌کند */
-.scroll-top-btn {
-    position: fixed;
-    bottom: 20px;
-    left: 20px;
-    z-index: 1000;
-}
-
-/* رفع مشکل نمایش navbar در موبایل */
-@media (max-width: 768px) {
-    .navbar .container {
-        flex-direction: column;
         gap: 10px;
+        padding: 14px;
     }
-    
-    .navbar-nav {
+
+    .cart-item-price { min-width: auto; }
+
+    .form-container {
+        padding: 24px 20px;
+        margin: 20px auto;
+    }
+
+    .book-detail-info h1 { font-size: 22px; }
+
+    .page-hero h1 { font-size: 26px; }
+
+    .row { flex-direction: column; gap: 0; }
+}
+
+@media (max-width: 480px) {
+    .books-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .book-card-actions { flex-direction: column; }
+
+    .book-detail-info .actions { flex-direction: column; }
+
+    .cart-item {
         flex-direction: column;
-        width: 100%;
-        gap: 5px;
-    }
-    
-    .navbar-nav .nav-link,
-    .cart-btn {
-        width: 100%;
         text-align: center;
-        justify-content: center;
     }
-    
-    .cart-btn {
-        position: relative;
+
+    .cart-item-quantity { justify-content: center; }
+    .cart-item-price { width: 100%; text-align: center; }
+    .cart-item-remove { width: 100%; }
+    .cart-total { text-align: center; }
+    .cart-total .btn { width: 100%; }
+
+    .scroll-top-btn { bottom: 15px; left: 15px; }
+}
+
+/* ============================================
+   بنر تبلیغاتی (Leaderboard 970×90)
+   ============================================ */
+.site-banner-wrap {
+    background: var(--bg-deep);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0;
+}
+
+.site-banner-inner {
+    max-width: 1344px;
+    margin: 0 auto;
+    padding: 0 25px;
+    display: flex;
+    justify-content: center;
+}
+
+.site-banner-link {
+    display: block;
+    width: 100%;
+    max-width: 1344px;
+    border-radius: var(--r-md);
+    overflow: hidden;
+    position: relative;
+}
+
+.site-banner-img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover;
+    display: flex;
+    border-radius: var(--r-md);
+}
+
+/* حالت پیش‌فرض وقتی بنر تنظیم نشده */
+.banner-placeholder {
+    width: 100%;
+    height: 450px;
+    background: linear-gradient(135deg, rgba(124,107,255,0.08), rgba(56,182,255,0.06));
+    border: 2px dashed rgba(124,107,255,0.25);
+    border-radius: var(--r-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.banner-placeholder:hover {
+    border-color: rgba(124,107,255,0.5);
+    background: linear-gradient(135deg, rgba(124,107,255,0.12), rgba(56,182,255,0.09));
+}
+
+.banner-placeholder-icon {
+    font-size: 28px;
+    opacity: 0.6;
+}
+
+.banner-placeholder-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 3px;
+}
+
+.banner-placeholder-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ریسپانسیو بنر */
+@media (max-width: 768px) {
+    .site-banner-img { height: 200px; }
+    .banner-placeholder { height: 60px; gap: 10px; }
+    .banner-placeholder-icon { font-size: 22px; }
+    .banner-placeholder-title { font-size: 12px; }
+    .banner-placeholder-sub { display: none; }
+}
+
+@media (max-width: 480px) {
+    .site-banner-img { height: 50px; }
+    .banner-placeholder { height: 50px; }
+}
+
+/* ============================================
+   فوتر کامل با درباره ما
+   ============================================ */
+.site-footer {
+    background: var(--bg-deep);
+    border-top: 1px solid var(--border);
+    margin-top: 80px;
+    position: relative;
+}
+
+.site-footer::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--primary), var(--accent), var(--primary), transparent);
+}
+
+/* گرید اصلی فوتر */
+.footer-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 25px 40px;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1.4fr;
+    gap: 50px;
+}
+
+/* ستون درباره ما */
+.footer-about {}
+
+.footer-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+}
+
+.footer-logo-icon {
+    font-size: 28px;
+    filter: drop-shadow(0 0 8px var(--primary-glow));
+}
+
+.footer-logo-text {
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+}
+
+.footer-about-text {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 2;
+    margin-bottom: 22px;
+}
+
+/* دکمه‌های شبکه‌های اجتماعی */
+.social-links {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.social-btn {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    flex-shrink: 0;
+}
+
+.social-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+.social-btn:hover {
+    transform: translateY(-4px);
+    color: white;
+}
+
+.social-instagram:hover {
+    background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(253,29,29,0.3);
+}
+
+.social-telegram:hover {
+    background: linear-gradient(135deg, #0088cc, #00aaff);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0,136,204,0.4);
+}
+
+.social-whatsapp:hover {
+    background: linear-gradient(135deg, #25d366, #128c7e);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(37,211,102,0.3);
+}
+
+.social-twitter:hover {
+    background: #000;
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+.social-youtube:hover {
+    background: linear-gradient(135deg, #ff0000, #cc0000);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(255,0,0,0.35);
+}
+
+.social-linkedin:hover {
+    background: linear-gradient(135deg, #0077b5, #005885);
+    border-color: transparent;
+    box-shadow: 0 8px 20px rgba(0,119,181,0.35);
+}
+
+/* عنوان ستون‌های فوتر */
+.footer-col-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    position: relative;
+}
+
+.footer-col-title::after {
+    content: '';
+    position: absolute;
+    bottom: -1px; right: 0;
+    width: 40px; height: 2px;
+    background: linear-gradient(90deg, var(--primary), var(--accent));
+    border-radius: 2px;
+}
+
+/* لینک‌های فوتر */
+.footer-links {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.footer-links a {
+    font-size: 14px;
+    color: var(--text-muted);
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.footer-links a:hover {
+    color: var(--primary-light);
+    padding-right: 4px;
+}
+
+/* اطلاعات تماس */
+.footer-contact {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.footer-contact li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+}
+
+.footer-contact a {
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.footer-contact a:hover {
+    color: var(--accent);
+}
+
+.contact-icon {
+    font-size: 16px;
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* خط پایین فوتر */
+.footer-bottom {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 20px 25px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-bottom p {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+.footer-bottom-links {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-bottom-links a {
+    font-size: 13px;
+    color: var(--text-muted);
+    transition: var(--transition);
+}
+
+.footer-bottom-links a:hover {
+    color: var(--primary-light);
+}
+
+/* ============================================
+   ریسپانسیو فوتر
+   ============================================ */
+@media (max-width: 1100px) {
+    .footer-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 36px;
     }
-    
-    .cart-count {
-        position: absolute;
-        top: -8px;
-        right: 10px;
+    .footer-about {
+        grid-column: 1 / -1;
+    }
+}
+
+@media (max-width: 600px) {
+    .footer-grid {
+        grid-template-columns: 1fr;
+        padding: 40px 20px 30px;
+        gap: 28px;
+    }
+    .footer-about {
+        grid-column: auto;
+    }
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        padding: 16px 20px;
+    }
+    .footer-bottom-links {
+        gap: 14px;
+    }
+    .social-links {
+        gap: 8px;
     }
 }

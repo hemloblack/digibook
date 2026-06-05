@@ -27,36 +27,36 @@ endif;
 
 <div class="book-detail">
     <div class="book-detail-image">
-        <?php 
+        <?php
         $imagePath = 'uploads/' . htmlspecialchars($book['image'] ?? '');
         if (!empty($book['image']) && file_exists($imagePath)): ?>
             <img src="<?php echo $imagePath; ?>" alt="<?php echo htmlspecialchars($book['title']); ?>">
         <?php else: ?>
-            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%23f0f0f0'/%3E%3Ctext x='150' y='200' text-anchor='middle' fill='%23999' font-size='16'%3Eبدون تصویر%3C/text%3E%3C/svg%3E" alt="بدون تصویر">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='400' viewBox='0 0 300 400'%3E%3Crect width='300' height='400' fill='%231e2040'/%3E%3Ctext x='150' y='200' text-anchor='middle' fill='%237c6bff' font-size='60'%3E📖%3C/text%3E%3C/svg%3E" alt="بدون تصویر">
         <?php endif; ?>
     </div>
-    
+
     <div class="book-detail-info">
         <span class="category">📂 <?php echo htmlspecialchars($book['category'] ?? 'متفرقه'); ?></span>
         <h1><?php echo htmlspecialchars($book['title']); ?></h1>
         <p class="author">✍️ نویسنده: <?php echo htmlspecialchars($book['author']); ?></p>
-        
+
         <div class="price-box">
             <span class="price"><?php echo number_format($book['price']); ?></span>
         </div>
-        
+
         <?php if (!empty($book['description'])): ?>
         <div class="description">
             <h4>📖 درباره کتاب</h4>
             <p><?php echo nl2br(htmlspecialchars($book['description'])); ?></p>
         </div>
         <?php endif; ?>
-        
+
         <div class="actions">
-            <button class="btn btn-success btn-lg add-to-cart-btn" 
-                data-id="<?php echo $book['id']; ?>" 
-                data-title="<?php echo htmlspecialchars($book['title']); ?>" 
-                data-price="<?php echo $book['price']; ?>" 
+            <button class="btn btn-success btn-lg add-to-cart-btn"
+                data-id="<?php echo $book['id']; ?>"
+                data-title="<?php echo htmlspecialchars($book['title']); ?>"
+                data-price="<?php echo $book['price']; ?>"
                 data-image="<?php echo htmlspecialchars($book['image'] ?? ''); ?>">
                 🛒 افزودن به سبد خرید
             </button>
