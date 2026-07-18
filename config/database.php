@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost';
 $dbname = 'bookstore_db';
-$username = 'root';  // نام کاربری دیتابیس خودت
-$password = '';      // پسورد دیتابیس خودت
+$username = 'root';  
+$password = '';      
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8mb4", $username, $password);
