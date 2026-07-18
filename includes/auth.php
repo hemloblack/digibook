@@ -5,23 +5,17 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-/**
- * آیا کاربر لاگین کرده؟
- */
+
 function isLoggedIn(): bool {
     return isset($_SESSION['user_id']) && !empty($_SESSION['user_id']);
 }
 
-/**
- * آیا کاربر ادمین است؟
- */
+
 function isAdmin(): bool {
     return isLoggedIn() && ($_SESSION['user_role'] ?? '') === 'admin';
 }
 
-/**
- * اگر لاگین نشده، به صفحه لاگین بفرست
- */
+
 function requireLogin(): void {
     if (!isLoggedIn()) {
         header('Location: /bookstore/login.php?redirect=' . urlencode($_SERVER['REQUEST_URI']));
@@ -29,9 +23,7 @@ function requireLogin(): void {
     }
 }
 
-/**
- * اگر ادمین نیست، برگردان
- */
+
 function requireAdmin(): void {
     if (!isAdmin()) {
         header('Location: /bookstore/index.php?error=access_denied');
@@ -39,9 +31,7 @@ function requireAdmin(): void {
     }
 }
 
-/**
- * اطلاعات کاربر لاگین‌شده
- */
+
 function currentUser(): array {
     if (!isLoggedIn()) return [];
     return [
