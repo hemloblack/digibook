@@ -1,8 +1,4 @@
 <?php
-/**
- * header.php - هدر مشترک سایت با احراز هویت
- * مسیر: /bookstore/includes/header.php
- */
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 include_once __DIR__ . '/../includes/auth.php';
@@ -18,7 +14,7 @@ include_once __DIR__ . '/../includes/auth.php';
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/bookstore/assets/css/style.css">
     <style>
-        /* ---- منوی کاربر ---- */
+        
         .user-menu-wrap { position: relative; }
 
         .user-menu-btn {
@@ -94,7 +90,7 @@ include_once __DIR__ . '/../includes/auth.php';
             font-size: 11px; color: #555775; margin-top: 2px;
         }
 
-        /* پیام خوش‌آمد */
+       
         .welcome-bar {
             background: rgba(0,229,160,0.08);
             border-bottom: 1px solid rgba(0,229,160,0.15);
@@ -185,7 +181,7 @@ include_once __DIR__ . '/../includes/auth.php';
 </nav>
 
 <?php if (basename($_SERVER['PHP_SELF']) === 'index.php'): ?>
-<!-- بنر تبلیغاتی — فقط در صفحه اصلی (970×90 Leaderboard) -->
+
 <div class="site-banner-wrap">
     <div class="site-banner-inner">
         <a href="#" class="site-banner-link">
