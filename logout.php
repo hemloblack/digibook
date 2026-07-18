@@ -1,8 +1,5 @@
 <?php
-/**
- * logout.php - خروج از حساب
- * مسیر: /bookstore/logout.php
- */
+
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
