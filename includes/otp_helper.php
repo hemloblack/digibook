@@ -14,7 +14,7 @@ function generateOtpCode(): string {
 
 function sendOtp(PDO $pdo, string $phone): array {
 
-    // حذف کدهای قدیمی این شماره
+    
     $pdo->prepare("DELETE FROM otp_codes WHERE phone = ?")->execute([$phone]);
 
     
