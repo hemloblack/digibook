@@ -4,9 +4,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// ============================================
-// تنظیمات sms.ir — فقط همین بخش رو عوض کنید
-// ============================================
+
 define('SMS_API_KEY',    'S8rT72DEEi5paD1UbRRsPNZBOWtes1KCSlPyx7ofygZazUNY');
 define('SMS_LINE_NUMBER', '30002108027251');   
 function generateOtpCode(): string {
