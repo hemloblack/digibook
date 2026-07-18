@@ -1,9 +1,5 @@
 <?php
-/**
- * fix_admin.php — یک‌بار اجرا کنید، بعد حذفش کنید
- * مسیر: این فایل را مستقیم در پوشه bookstore بگذارید
- * سپس در مرورگر باز کنید: http://localhost/bookstore/fix_admin.php
- */
+
 
 include 'config/database.php';
 
