@@ -1,12 +1,9 @@
-/* ============================================
-   کتابفروشی من - Dark Luxury Theme
-   رنگ‌ها: آبی و بنفش
-   ============================================ */
+
 
 @import url('https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-    /* رنگ‌های اصلی */
+    
     --primary:        #7c6bff;
     --primary-dark:   #5c4de8;
     --primary-light:  #a99cff;
@@ -19,7 +16,7 @@
     --success:        #00e5a0;
     --danger:         #ff5c7c;
 
-    /* پس‌زمینه‌های تاریک */
+    
     --bg-deep:        #07080f;
     --bg-base:        #0d0e1a;
     --bg-card:        #12142a;
@@ -27,22 +24,22 @@
     --bg-input:       #1a1c32;
     --bg-elevated:    #1e2040;
 
-    /* متن */
+   
     --text-primary:   #f0f0ff;
     --text-secondary: #8b8db0;
     --text-muted:     #555775;
 
-    /* خطوط */
+   
     --border:         rgba(124, 107, 255, 0.15);
     --border-bright:  rgba(124, 107, 255, 0.4);
 
-    /* سایه‌ها */
+    
     --shadow-sm:  0 2px 12px rgba(0,0,0,0.3);
     --shadow-md:  0 8px 32px rgba(0,0,0,0.4);
     --shadow-lg:  0 20px 60px rgba(0,0,0,0.5);
     --shadow-glow: 0 0 40px var(--primary-glow);
 
-    /* شعاع */
+  
     --r-sm:  8px;
     --r-md:  14px;
     --r-lg:  20px;
@@ -53,9 +50,7 @@
     --transition-slow: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* ============================================
-   ریست و پایه
-   ============================================ */
+
 *, *::before, *::after {
     margin: 0;
     padding: 0;
