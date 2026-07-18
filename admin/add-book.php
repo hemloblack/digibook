@@ -1,8 +1,5 @@
 <?php
-/**
- * add-book.php - افزودن کتاب (فقط ادمین)
- * مسیر: /bookstore/admin/add-book.php
- */
+
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
