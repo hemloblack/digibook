@@ -1,17 +1,15 @@
 <?php
-/**
- * فوتر مشترک سایت کتاب‌فروشی - با بخش درباره ما و شبکه‌های اجتماعی
- */
+
 ?>
     </div><!-- .container -->
 </main>
 
 <footer class="site-footer">
 
-    <!-- ردیف اصلی فوتر -->
+   
     <div class="footer-grid">
 
-        <!-- ستون ۱: درباره ما -->
+        
         <div class="footer-col footer-about">
             <div class="footer-logo">
                 <span class="footer-logo-icon">📚</span>
@@ -20,7 +18,7 @@
             <p class="footer-about-text">
                 ما با هدف گسترش فرهنگ کتاب‌خوانی، بهترین کتاب‌های ایرانی و خارجی را با مناسب‌ترین قیمت در اختیار شما قرار می‌دهیم. از ادبیات تا علم، هر آنچه بخوانید پیدا می‌کنید.
             </p>
-            <!-- شبکه‌های اجتماعی -->
+           
             <div class="social-links">
                 <a href="#" class="social-btn social-instagram" aria-label="اینستاگرام" title="اینستاگرام">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -70,7 +68,7 @@
             </ul>
         </div>
 
-        <!-- ستون ۳: دسته‌بندی‌ها -->
+        
         <div class="footer-col">
             <h4 class="footer-col-title">دسته‌بندی‌ها</h4>
             <ul class="footer-links">
@@ -83,7 +81,7 @@
             </ul>
         </div>
 
-        <!-- ستون ۴: تماس با ما -->
+        
         <div class="footer-col">
             <h4 class="footer-col-title">تماس با ما</h4>
             <ul class="footer-contact">
@@ -108,7 +106,7 @@
 
     </div><!-- /.footer-grid -->
 
-    <!-- خط پایین فوتر -->
+    
     <div class="footer-bottom">
         <p>تمامی حقوق محفوظ است &copy; 1405 | کتاب‌فروشی آنلاین من | طراحی شده با ❤️</p>
         <div class="footer-bottom-links">
@@ -119,8 +117,6 @@
     </div>
 
 </footer>
-
-<!-- اسکریپت‌ها -->
 <script src="/bookstore/assets/js/script.js"></script>
 </body>
 </html>
