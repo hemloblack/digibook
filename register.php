@@ -1,8 +1,4 @@
 <?php
-/**
- * register.php - ثبت‌نام سه مرحله‌ای
- * مسیر: /bookstore/register.php
- */
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
