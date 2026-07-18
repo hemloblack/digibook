@@ -1,8 +1,5 @@
 <?php
-/**
- * checkout.php - تکمیل سفارش
- * مسیر: /bookstore/checkout.php
- */
+
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
