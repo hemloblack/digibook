@@ -1,9 +1,5 @@
 <?php
-/**
- * auth.php - بررسی وضعیت احراز هویت
- * این فایل را در includes/ قرار دهید
- * استفاده: include 'includes/auth.php';
- */
+
 
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
