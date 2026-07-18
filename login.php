@@ -1,8 +1,5 @@
 <?php
-/**
- * login.php - صفحه ورود
- * مسیر: /bookstore/login.php
- */
+
 
 if (session_status() === PHP_SESSION_NONE) session_start();
 
