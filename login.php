@@ -6,7 +6,6 @@ if (session_status() === PHP_SESSION_NONE) session_start();
 include 'config/database.php';
 include 'includes/auth.php';
 
-// اگر از قبل لاگین است
 if (isLoggedIn()) {
     header('Location: /bookstore/index.php');
     exit;
@@ -22,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($login) || empty($password)) {
         $error = 'لطفاً همه فیلدها را پر کنید';
     } else {
-        // جستجو با نام کاربری یا شماره موبایل
+        
         $stmt = $pdo->prepare("SELECT * FROM users WHERE (username = ? OR phone = ?) AND is_active = 1 LIMIT 1");
         $stmt->execute([$login, $login]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
