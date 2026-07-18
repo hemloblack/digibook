@@ -19,8 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $action = $_POST['action'] ?? '';
 
-    /* ---- مرحله ۱: دریافت شماره موبایل ---- */
-    if ($action === 'send_otp') {
+     if ($action === 'send_otp') {
         $phone = normalizePhone($_POST['phone'] ?? '');
 
         if (!preg_match('/^09[0-9]{9}$/', $phone)) {
@@ -49,7 +48,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    /* ---- ارسال مجدد کد ---- */
+    
     elseif ($action === 'resend_otp') {
         $phone = $_SESSION['reg_phone'] ?? '';
         if ($phone) {
@@ -64,7 +63,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    /* ---- مرحله ۲: تایید کد OTP ---- */
+    
     elseif ($action === 'verify_otp') {
         $code  = trim($_POST['otp_code'] ?? '');
         $phone = $_SESSION['reg_phone'] ?? '';
@@ -89,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    /* ---- مرحله ۳: ثبت اطلاعات کاربر ---- */
+    
     elseif ($action === 'complete_register') {
         $phone    = $_SESSION['reg_phone']          ?? '';
         $verified = $_SESSION['reg_phone_verified'] ?? false;
@@ -146,7 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
     }
 
-    /* ---- برگشت به مرحله قبل ---- */
+    
     elseif ($action === 'back') {
         $backTo = (int)($_POST['back_to'] ?? 1);
         // اگر برگشتیم به مرحله ۱، شماره رو هم پاک کن
